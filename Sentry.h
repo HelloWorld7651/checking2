@@ -4,6 +4,7 @@
 
   // Engine includes.
   #include "Object.h"
+  #include "TextEntry.h"
 
   namespace df {
 

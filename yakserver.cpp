@@ -49,7 +49,7 @@ yakserver::~yakserver(){
 //handle network event
 int yakserver::eventHandler(const df::Event event_pointer){
     if(events->getType() == df::NETWORK_EVENT){
-        const EventNetwork *network_event_pointer = <const EventNetwork*>(event_pointer);
+        const EventNetwork *network_event_pointer = dynamic_cast<const EventNetwork*>(event_pointer);
 
         switch(network_event_pointer->getLabel()){
             case NetworkEventLabel::ACCEPT:
@@ -82,7 +82,7 @@ void yakserver::handleMessage(int index){
     memset(buffer, 0, message_size);
 
     if(data_len > 0){
-        NM.recieve(buffer, len, false, index);
+        NM.receive(buffer, len, false, index);
     }
 
     //broadcast message

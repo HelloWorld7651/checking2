@@ -17,13 +17,13 @@ enum class MessageType{
 
 class yakclient:public df::Object {
     private:
-    df::TextBox text_box; //ui box
+    df::TextBox *text_box; //ui box
     void handleMessage(); // read from server
 
     public:
-    yakclient(df::TextBox box); // constructor for text box
+    yakclient(df::TextBox *box); // constructor for text box
     ~yakclient();
-    int eventHandler(const df::Event event) override;
+    int eventHandler(const df::Event *event) override;
 };
 
 #endif

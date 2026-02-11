@@ -9,7 +9,7 @@ enum class MessageType{
     UNDEFINED = -1, EXIT, CHAT
 };
 
-struct packet{
+struct Packetheader{
     int size; // size of message
     MessageType type; //type of message
 };
@@ -46,7 +46,7 @@ yakclient::~yakclient(){
 
 int yakclient::eventHandler(const df::event event){
     if(event->getType() == df::NETWORK_EVENT){
-        const EventNetwork network = <const EventNetwork*>(event);
+        const EventNetwork network = dynamic_cast<const EventNetwork*>(event);
 
         if(network->getLabel() == NetworkEventLabel::DATA){
             handleMessage();
@@ -69,7 +69,7 @@ void yakclient::handleMessage(){
     memset(buffer,0,message_size);
 
     if(text_length > 0){
-        NM.recieve(buffer, text_length, false);
+        NM.receive(buffer, text_length, false);
     }
 
     //process message
